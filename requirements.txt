@@ -1,0 +1,10 @@
+tensorflow
+jupyter
+pandas
+numpy
+scipy
+nltk
+pillow
+distance 
+six
+click

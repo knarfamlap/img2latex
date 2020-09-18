@@ -1,7 +1,6 @@
-import numpy as np
 import tensorflow as tf
 
-from attention import BahdanauAttention
+from .attention import BahdanauAttention
 
 class Decoder(tf.keras.Model):
     def __init__(self, embedding_dim, units, vocab_size):

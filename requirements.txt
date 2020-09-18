@@ -8,3 +8,4 @@ pillow
 distance 
 six
 click
+imageio

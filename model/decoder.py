@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
+from attention import BahdanauAttention
 
 class Decoder(tf.keras.Model):
     def __init__(self, embedding_dim, units, vocab_size):
@@ -12,8 +13,8 @@ class Decoder(tf.keras.Model):
 
         self.fc1 = tf.keras.layers.Dense(self.units)
         self.fc2 = tf.keras.layers.Dense(vocab_size)
-        # TODO: Define Attention Cell
-        self.attention = # get attention cell
+        
+        self.attention = BahdanauAttention
 
     def call(self, x, features, hidden):
         # defining attention as seperate model

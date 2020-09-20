@@ -10,3 +10,4 @@ distance
 six
 click
 imageio
+sklearn

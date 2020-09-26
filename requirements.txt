@@ -11,3 +11,4 @@ six
 click
 imageio
 sklearn
+matplotlib

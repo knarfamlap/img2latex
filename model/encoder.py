@@ -6,7 +6,7 @@ class CNN_Encoder(tf.keras.Model):
     def __init__(self, embedding_dim):
         super(CNN_Encoder, self).__init__()
 
-        self.conv2d_1 = tf.keras.layers.Conv2D(64, 3, padding='same', activation='relu', input_shape=(50, 120, 3))
+        self.conv2d_1 = tf.keras.layers.Conv2D(64, 3, padding='same', activation='relu')
         self.maxpool_1 = tf.keras.layers.MaxPool2D(padding='same')
 
         self.conv2d_2 = tf.keras.layers.Conv2D(128, 3, padding='same', activation='relu')

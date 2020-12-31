@@ -1,14 +1,10 @@
-tensorflow
-tensorflow-addons
 jupyter
 pandas
 numpy
 scipy
-nltk
 pillow
 distance 
 six
 click
 imageio
-sklearn
 matplotlib

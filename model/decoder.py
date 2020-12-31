@@ -11,9 +11,9 @@ class Decoder(tf.keras.Model):
 
         self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
         self.gru = tf.keras.layers.GRU(self.units,
-                                    return_sequences=True,
-                                    return_state=True,
-                                    recurrent_initializer='glorot_uniform')
+                                       return_sequences=True,
+                                       return_state=True,
+                                       recurrent_initializer='glorot_uniform')
         self.fc1 = tf.keras.layers.Dense(self.units)
         self.fc2 = tf.keras.layers.Dense(vocab_size)
 
@@ -45,6 +45,7 @@ class Decoder(tf.keras.Model):
 
     def reset_state(self, batch_size):
         return tf.zeros((batch_size, self.units))
+
 
 def embedding_initializer(shape, dtype):
     E = tf.random.uniform(shape, minval=-1.0, maxval=1.0, dtype=dtype)

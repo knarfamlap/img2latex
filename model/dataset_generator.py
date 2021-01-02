@@ -6,15 +6,19 @@ from skimage import io
 
 class DatasetGenerator(Dataset):
 
-    def __init__(self, formulas_file, root_dir, transform=None):
+    def __init__(self, formulas_file, root_dir, data_name,
+                 vocab_file, transform=None,):
         """
         Args:
             formulas_file (String): Path to the formulas file
             root_dir (String): Directory with all the images in png format
+            data_name (String): name of data split [train, test, validate]
         """
         self.formulas = open(formulas_file, 'r').read().split('\n')[:-1]
         self.root_dir = root_dir
         self.transform = transform
+        self.data_name = data_name
+        self.vocab_file = open(vocab_file, 'r').read().split('\n')[:-1]
 
     def __len__(self):
         return len(self.formulas)
@@ -25,12 +29,13 @@ class DatasetGenerator(Dataset):
 
         img_name = os.path.join(self.root_dir, "{}.png".format(idx))
 
-        image = io.imread(img_name)
+        image = io.imread(img_name) / 255.
+
         formula = self.formulas[idx]
 
-        sample = {'image': image, 'formula': formula}
-
         if self.transform:
-            sample = self.transform(sample)
+            image = self.transform(image)
 
+        sample = {'image': image, 'formula': formula}
+    
         return sample

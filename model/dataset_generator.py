@@ -6,7 +6,7 @@ from skimage import io
 
 class DatasetGenerator(Dataset):
 
-    def __init__(self, formulas_file, root_dir):
+    def __init__(self, formulas_file, root_dir, transform=None):
         """
         Args:
             formulas_file (String): Path to the formulas file
@@ -14,6 +14,7 @@ class DatasetGenerator(Dataset):
         """
         self.formulas = open(formulas_file, 'r').read().split('\n')[:-1]
         self.root_dir = root_dir
+        self.transform = transform
 
     def __len__(self):
         return len(self.formulas)
@@ -28,5 +29,8 @@ class DatasetGenerator(Dataset):
         formula = self.formulas[idx]
 
         sample = {'image': image, 'formula': formula}
+
+        if self.transform:
+            sample = self.transform(sample)
 
         return sample

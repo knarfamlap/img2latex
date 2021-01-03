@@ -1,5 +1,6 @@
 import os
 import pickle as pkl
+import argparse
 from collections import Counter
 
 START_TOKEN = 0
@@ -53,7 +54,19 @@ def build_vocab(formulas_dir, min_count=10):
 
 
 def load_vocab(vocab_dir):
+    """
+    Load the vocab file from given dir
+    """
     with open(vocab_dir, 'rb') as f:
         vocab = pkl.load(f)
 
     return vocab
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Building vocab for Dataset")
+    parser.add_argument("--data_path", type=str,
+                        default="./data/vocab.pkl",
+                        help="Path of the vocab file")
+    args = parser.parse_args()
+    vocab = build_vocab(args.data_path)

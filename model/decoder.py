@@ -39,6 +39,14 @@ class AttnDecoder(nn.Module):
     def forward(self, imgs, formulas, epsilos=1.):
         pass
 
+    def init_decoder(self, enc_out):
+        mean_enc_out = enc_out.mean(dim=1)
+        h = self._init_h(mean_enc_out)
+        c = self._init_c(mean_enc_out)
+        init_o = self._init_o(mean_enc_out)
+
+        return (h, c), init_o
+
     def _get_attn(self, enc_out, h_t):
         alpha = torch.tanh(self.W_1(enc_out) + self.W_2(h_t).unsqueeze(1))
         alpha = torch.sum(self.beta * alpha, dim=1)
